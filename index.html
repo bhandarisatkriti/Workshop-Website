@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWS Cloud & DevOps Workshop</title>
+
+<style>
+body { margin:0; font-family:'Segoe UI',sans-serif; background:#f4f6f9; }
+header { background:linear-gradient(135deg,#232f3e,#0073bb); color:white; text-align:center; padding:80px 20px; }
+header h1{font-size:3rem;margin:0}
+header p{margin:10px 0 20px}
+
+.btn{background:#ff9900;color:white;padding:12px 25px;border:none;border-radius:25px;cursor:pointer;transition:.3s}
+.btn:hover{background:#e68a00}
+
+nav{background:white;padding:10px;text-align:center;position:sticky;top:0;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+nav a{margin:0 15px;text-decoration:none;color:#0073bb;font-weight:bold}
+
+section{padding:50px 20px;max-width:1100px;margin:auto}
+h2{color:#ff9900}
+
+.card{background:white;padding:20px;margin-bottom:20px;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,.1)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+
+/* Accordion */
+.accordion{background:#0073bb;color:white;padding:15px;width:100%;border:none;text-align:left;font-size:1.1rem;border-radius:8px;margin-top:10px;cursor:pointer}
+.panel{display:none;background:#f9fbfc;padding:15px;border-radius:8px}
+
+/* Countdown */
+.countdown{font-size:1.5rem;text-align:center;margin-top:10px}
+
+footer{background:#232f3e;color:white;text-align:center;padding:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>AWS Cloud & DevOps Workshop</h1>
+<p>Learn Cloud + DevOps in 5 Days</p>
+<button class="btn" onclick="scrollToRegister()">Enroll Now</button>
+<div class="countdown" id="countdown"></div>
+</header>
+
+<nav>
+<a href="#overview">Overview</a>
+<a href="#features">Features</a>
+<a href="#syllabus">Syllabus</a>
+<a href="#register">Register</a>
+</nav>
+
+<section id="overview">
+<h2>Overview</h2>
+<div class="card">
+<p>Hands-on AWS training with real projects. Learn deployment, CI/CD, monitoring and cost optimization.</p>
+<ul>
+<li>5 Days | 30 Hours</li>
+<li>Beginner → Intermediate</li>
+<li>Real-world projects</li>
+</ul>
+</div>
+</section>
+
+<section id="features">
+<h2>What You'll Learn</h2>
+<div class="grid">
+<div class="card">EC2, S3 Deployment</div>
+<div class="card">CI/CD Pipelines</div>
+<div class="card">RDS Databases</div>
+<div class="card">Cloud Monitoring</div>
+</div>
+</section>
+
+<section id="syllabus">
+<h2>Syllabus</h2>
+
+<button class="accordion">Day 1</button>
+<div class="panel"><ul><li>Cloud Basics</li><li>AWS Intro</li><li>IAM</li></ul></div>
+
+<button class="accordion">Day 2</button>
+<div class="panel"><ul><li>EC2</li><li>S3</li><li>Databases</li></ul></div>
+
+<button class="accordion">Day 3</button>
+<div class="panel"><ul><li>VPC</li><li>DevOps</li></ul></div>
+
+<button class="accordion">Day 4</button>
+<div class="panel"><ul><li>GitHub</li><li>CI/CD</li></ul></div>
+
+<button class="accordion">Day 5</button>
+<div class="panel"><ul><li>Monitoring</li><li>Project</li></ul></div>
+
+</section>
+
+<section id="register">
+<h2>Register</h2>
+<div class="card">
+<form onsubmit="handleSubmit(event)">
+<input type="text" placeholder="Name" required style="width:100%;padding:10px;margin-bottom:10px">
+<input type="email" placeholder="Email" required style="width:100%;padding:10px;margin-bottom:10px">
+<button class="btn">Submit</button>
+</form>
+<p id="msg"></p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 AWS Workshop</p>
+</footer>
+
+<script>
+// Accordion
+const acc=document.querySelectorAll('.accordion');
+acc.forEach(btn=>{
+ btn.addEventListener('click',()=>{
+  const panel=btn.nextElementSibling;
+  panel.style.display=panel.style.display==='block'?'none':'block';
+ });
+});
+
+// Scroll
+function scrollToRegister(){
+ document.getElementById('register').scrollIntoView({behavior:'smooth'});
+}
+
+// Form submit
+function handleSubmit(e){
+ e.preventDefault();
+ document.getElementById('msg').innerText='✅ Registered Successfully!';
+}
+
+// Countdown Timer
+const targetDate=new Date();
+targetDate.setDate(targetDate.getDate()+5);
+
+setInterval(()=>{
+ const now=new Date();
+ const diff=targetDate-now;
+ const d=Math.floor(diff/(1000*60*60*24));
+ const h=Math.floor((diff/(1000*60*60))%24);
+ const m=Math.floor((diff/(1000*60))%60);
+ document.getElementById('countdown').innerText=`Starts in ${d}d ${h}h ${m}m`;
+},1000);
+</script>
+
+</body>
+</html>
